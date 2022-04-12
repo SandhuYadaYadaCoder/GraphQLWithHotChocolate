@@ -11,20 +11,20 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Platform> Platforms { get; set; }
-    public DbSet<PlatformCommand> Commands { get; set; }
+    public DbSet<PlatformCli> PlatformClis { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder
             .Entity<Platform>()
-            .HasMany(x => x.Commands)
+            .HasMany(x => x.PlatformClis)
             .WithOne(x => x.Platform)
             .HasForeignKey(x => x.PlatformId);
 
         builder
-            .Entity<PlatformCommand>()
+            .Entity<PlatformCli>()
             .HasOne(x => x.Platform)
-            .WithMany(x => x.Commands)
+            .WithMany(x => x.PlatformClis)
             .HasForeignKey(x => x.PlatformId);
 
         builder
@@ -51,17 +51,17 @@ public class AppDbContext : DbContext
         });
 
         builder
-            .Entity<PlatformCommand>()
-            .HasData(new List<PlatformCommand>
+            .Entity<PlatformCli>()
+            .HasData(new List<PlatformCli>
             {
-                new PlatformCommand
+                new PlatformCli
                 {
                     Id = 1,
                     HowTo = "Build project",
                     CommandLine = "dotnet build",
                     PlatformId = 1
                 },
-                new PlatformCommand
+                new PlatformCli
                 {
                     Id = 2,
                     HowTo = "Run project",

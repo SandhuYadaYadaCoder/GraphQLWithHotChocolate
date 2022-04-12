@@ -8,22 +8,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.PlatformCommands.Queries.Handlers;
 
-public class GetCommandsQueryHandler : IQueryHandler<GetPlatformCommandsQuery, IEnumerable<CommandReadDto>>
+public class GetPlatformClisQueryHandler : IQueryHandler<GetPlatformClisQuery, IEnumerable<PlatformCliReadDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
 
-    public GetCommandsQueryHandler(IUnitOfWork unitOfWork)
+    public GetPlatformClisQueryHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
 
-    public Task<IEnumerable<CommandReadDto>> Handle(GetPlatformCommandsQuery request, CancellationToken cancellationToken)
+    public Task<IEnumerable<PlatformCliReadDto>> Handle(GetPlatformClisQuery request, CancellationToken cancellationToken)
     {
         return Task.FromResult(_unitOfWork
-            .GetRepository<PlatformCommand>()
+            .GetRepository<PlatformCli>()
             .GetAll()
             .Include(x => x.Platform)
-            .Select(x => new CommandReadDto(
+            .Select(x => new PlatformCliReadDto(
                 x.Id,
                 x.HowTo!,
                 x.CommandLine!,

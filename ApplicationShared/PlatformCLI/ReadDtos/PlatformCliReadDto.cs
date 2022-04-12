@@ -2,7 +2,7 @@
 
 namespace ApplicationShared.PlatformCommand.ReadDtos;
 
-public record CommandReadDto(
+public record PlatformCliReadDto(
     int Id, 
     string HowTo, 
     string CommandLine, 

@@ -23,12 +23,12 @@ public class GetPlatformQueryHandler : IQueryHandler<GetPlatformsQuery, IEnumera
         return Task.FromResult(_unitOfWork
             .GetRepository<Platform>()
             .GetAll()
-            .Include(x => x.Commands)
+            .Include(x => x.PlatformClis)
             .Select(x => new PlatformReadDto(
                 x.Id,
                 x.Name!,
-                x.Commands
-                .Select(y => new CommandReadDto(y.Id, y.HowTo!, y.CommandLine!, y.PlatformId, null))
+                x.PlatformClis
+                .Select(y => new PlatformCliReadDto(y.Id, y.HowTo!, y.CommandLine!, y.PlatformId, null))
                 .AsEnumerable()))
             .AsEnumerable());
     }

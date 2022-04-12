@@ -14,10 +14,9 @@ public static class GraphQLConfigurations
         services
             .AddGraphQLServer()
             .AddQueryType<Query>()
-            //.AddMutationType<Mutation>()
-            //.AddSubscriptionType<Subscription>()
+            .AddMutationType<Mutation>()
             .AddType<PlatformType>()
-            .AddType<CommandType>()
+            .AddType<PlatformCliType>()
             .RegisterService<IQueryManager>(ServiceKind.Resolver)
             .RegisterService<ICommandManager>(ServiceKind.Resolver)
             .RegisterService<IUnitOfWork>(ServiceKind.Resolver)

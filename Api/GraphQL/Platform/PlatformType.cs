@@ -18,9 +18,9 @@ public class PlatformType : ObjectType<PlatformReadDto>
 
     private class Resolvers
     {
-        public IQueryable<CommandReadDto> GetCommands(PlatformReadDto platform, [ScopedService] IQueryManager queryManager)
+        public IQueryable<PlatformCliReadDto> GetCommands(PlatformReadDto platform, [ScopedService] IQueryManager queryManager)
         {
-            return new List<CommandReadDto>().AsQueryable();
+            return new List<PlatformCliReadDto>().AsQueryable();
         }
     }
 }

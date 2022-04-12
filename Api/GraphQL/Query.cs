@@ -18,9 +18,9 @@ public class Query
 
     [UseFiltering]
     [UseSorting]
-    public async Task<List<CommandReadDto>> GetCommands([ScopedService] IQueryManager queryManager)
+    public async Task<List<PlatformCliReadDto>> GetCommands([ScopedService] IQueryManager queryManager)
     {
-        IEnumerable<CommandReadDto> platformCommands = await queryManager.Send(new GetPlatformCommandsQuery());
+        IEnumerable<PlatformCliReadDto> platformCommands = await queryManager.Send(new GetPlatformClisQuery());
         return platformCommands.ToList();
     }
 }

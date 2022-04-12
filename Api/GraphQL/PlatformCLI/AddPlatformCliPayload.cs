@@ -2,4 +2,4 @@
 
 namespace Api.GraphQL.PlatformCommand;
 
-public record AddCommandPayload(CommandReadDto Commmand);
+public record AddPlatformCliPayload(PlatformCliReadDto Commmand);

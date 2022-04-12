@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Entities;
 
-public class PlatformCommand : EntityBase
+public class PlatformCli : EntityBase
 {
     public int Id { get; set; }
     public string? HowTo { get; set; }

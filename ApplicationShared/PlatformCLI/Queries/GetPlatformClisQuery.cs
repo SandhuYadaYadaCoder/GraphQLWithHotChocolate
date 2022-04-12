@@ -3,6 +3,6 @@ using Core.CQRS.QueryManager;
 
 namespace ApplicationShared.PlatformCommand.Queries;
 
-public class GetPlatformCommandsQuery :IQuery<IEnumerable<CommandReadDto>>
+public class GetPlatformClisQuery : IQuery<IEnumerable<PlatformCliReadDto>>
 {
 }
