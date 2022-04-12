@@ -28,6 +28,6 @@ public class CreatePlatformCommandHandler : ICommandHandlerWithReturn<CreatePlat
 
         await _persistenceUnitOfWork.SaveChangesAsync();
 
-        return new PlatformReadDto(platform.Id, platform.Name, null);
+        return new PlatformReadDto(platform.Id, platform.Name, platform.LicenseKey, null);
     }
 }

@@ -2,4 +2,4 @@
 
 namespace ApplicationShared.Platform.ReadDtos;
 
-public record PlatformReadDto(int Id, string Name, IEnumerable<PlatformCliReadDto>? Commands);
+public record PlatformReadDto(int Id, string Name, string LicenseKey, IEnumerable<PlatformCliReadDto>? Commands);

@@ -11,6 +11,10 @@ public class PlatformType : ObjectType<PlatformReadDto>
         descriptor.Description("Represents any software or service that has a command line interface.");
 
         descriptor
+            .Field(x => x.LicenseKey)
+            .Ignore();
+
+        descriptor
             .Field(x => x.Commands)
             .ResolveWith<Resolvers>(x => x.GetCommands(default!, default!))
             .Description("This is the list of all available commands for this platform");

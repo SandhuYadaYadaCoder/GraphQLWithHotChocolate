@@ -27,6 +27,7 @@ public class GetPlatformQueryHandler : IQueryHandler<GetPlatformsQuery, IEnumera
             .Select(x => new PlatformReadDto(
                 x.Id,
                 x.Name!,
+                x.LicenseKey!,
                 x.PlatformClis
                 .Select(y => new PlatformCliReadDto(y.Id, y.HowTo!, y.CommandLine!, y.PlatformId, null))
                 .AsEnumerable()))

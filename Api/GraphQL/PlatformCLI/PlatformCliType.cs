@@ -22,7 +22,7 @@ public class PlatformCliType : ObjectType<PlatformCliReadDto>
         {
             // In general we send a query from this method and get results from that but I am just returning new PlatformReadDto from here.
 
-            return new PlatformReadDto(1, "Test", new List<PlatformCliReadDto> { command });
+            return new PlatformReadDto(1, "Test", "LicenseKey", new List<PlatformCliReadDto> { command });
         }
     }
 }

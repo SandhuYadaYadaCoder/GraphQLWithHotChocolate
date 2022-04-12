@@ -28,7 +28,7 @@ public class GetPlatformClisQueryHandler : IQueryHandler<GetPlatformClisQuery, I
                 x.HowTo!,
                 x.CommandLine!,
                 x.PlatformId,
-                new PlatformReadDto(x.Platform.Id, x.Platform.Name!, null)
+                new PlatformReadDto(x.Platform.Id, x.Platform.Name!, x.Platform.LicenseKey!, null)
                 ))
             .AsEnumerable());
     }
