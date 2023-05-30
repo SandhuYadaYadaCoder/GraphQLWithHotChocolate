@@ -1,4 +1,5 @@
 ﻿using Core.CQRS.CommandManager;
+using Core.CQRS.EventManager;
 using Core.CQRS.QueryManager;
 using Core.UnitOfWorkManager;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class CoreModuleConfigurations
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IQueryManager, QueryManager>();
+        services.AddScoped<IEventManager, EventManager>();
         services.AddScoped<ICommandManager, CommandManager>();
         services.AddScoped<IPersistenceUnitOfWork, UnitOfWork>();
 

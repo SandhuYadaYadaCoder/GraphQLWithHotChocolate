@@ -5,4 +5,5 @@ namespace ApplicationShared.Platform.Queries;
 
 public class GetPlatformsQuery : IQuery<IEnumerable<PlatformReadDto>>
 {
+    
 }
