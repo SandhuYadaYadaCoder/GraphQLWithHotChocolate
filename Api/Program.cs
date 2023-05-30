@@ -29,4 +29,6 @@ app.UseGraphQLVoyager(new VoyagerOptions()
     GraphQLEndPoint = "/graphql"
 });
 
+//test
+
 app.Run();
