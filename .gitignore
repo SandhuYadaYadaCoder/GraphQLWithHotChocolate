@@ -363,3 +363,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vs/GraphQLWithHotChocolate/DesignTimeBuild/.dtbcache.v2
+/.vs/GraphQLWithHotChocolate/v17/.suo
