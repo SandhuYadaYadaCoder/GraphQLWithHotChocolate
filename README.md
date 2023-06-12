@@ -97,6 +97,6 @@ Their contributions and efforts have greatly facilitated the development of this
 
 ## Contact
 
-If you have any questions, suggestions, or feedback, please feel free to contact me at your-sandhu.manpreet366@gmail.com.
+If you have any questions, suggestions, or feedback, please feel free to contact me at sandhu.manpreet366@gmail.com.
 
 Thank you for your interest in the GraphQLWithHotChocolate project!
