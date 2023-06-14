@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace Core.UnitOfWorkManager;
 
@@ -8,6 +9,7 @@ public class UnitOfWork : IPersistenceUnitOfWork
 {
     private readonly AppDbContext _context = new AppDbContext(new DbContextOptionsBuilder().Options);
     private readonly IRepositoryFactory _repositoryFactory;
+    private DbContextTransaction? _currentTransaction;
 
     public UnitOfWork(IRepositoryFactory repositoryFactory)
     {
@@ -32,5 +34,22 @@ public class UnitOfWork : IPersistenceUnitOfWork
     public bool HasUnsavedChanges()
     {
         return _context.ChangeTracker.HasChanges();
+    }
+
+    public void BeginTransaction()
+    {
+        _currentTransaction = (DbContextTransaction)_context.Database.BeginTransaction();
+    }
+
+    public void CommitTransaction()
+    {
+        _currentTransaction?.Commit();
+        _currentTransaction = null;
+    }
+
+    public void RollbackTransaction()
+    {
+        _currentTransaction?.Rollback();
+        _currentTransaction = null;
     }
 }
