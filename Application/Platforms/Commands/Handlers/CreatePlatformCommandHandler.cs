@@ -49,6 +49,9 @@ public class CreatePlatformCommandHandler : ICommandHandlerWithReturn<CreatePlat
 
             await _eventManager.Publish(new PlatformCreatedDomainEvent(platform.Id));
 
+            // Following should persist all the changes that should have added to dbcontext by domainEventHandlers
+            await _persistenceUnitOfWork.SaveChangesAsync();
+
             _persistenceUnitOfWork.CommitTransaction();
 
             return new PlatformReadDto(platform.Id, platform.Name, platform.LicenseKey, null);
