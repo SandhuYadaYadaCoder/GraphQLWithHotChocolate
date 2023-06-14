@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ApplicationShared\ApplicationShared.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

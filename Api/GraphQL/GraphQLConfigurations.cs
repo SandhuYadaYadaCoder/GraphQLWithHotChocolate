@@ -2,8 +2,6 @@
 using Api.GraphQL.PlatformCommand;
 using Core.CQRS.CommandManager;
 using Core.CQRS.QueryManager;
-using Core.UnitOfWorkManager;
-using DataAccess.Repositories;
 
 namespace Api.GraphQL;
 
@@ -19,9 +17,6 @@ public static class GraphQLConfigurations
             .AddType<PlatformCliType>()
             .RegisterService<IQueryManager>(ServiceKind.Resolver)
             .RegisterService<ICommandManager>(ServiceKind.Resolver)
-            .RegisterService<IUnitOfWork>(ServiceKind.Resolver)
-            .RegisterService<IPersistenceUnitOfWork>(ServiceKind.Resolver)
-            .RegisterService<IRepositoryFactory>(ServiceKind.Resolver)
             .AddFiltering()
             .AddSorting()
             .AddInMemorySubscriptions();

@@ -13,7 +13,7 @@ public static class DatabaseAutoMigrations
         try
         {
             logger.Information("Run EFCore migrations, if any");
-            using IServiceScope scope = serviceProvider.CreateScope();
+            IServiceScope scope = serviceProvider.CreateScope();
             serviceProvider = scope.ServiceProvider;
             AppDbContext context = serviceProvider.GetRequiredService<AppDbContext>();
             context.Database.Migrate();

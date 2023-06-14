@@ -1,6 +1,5 @@
 ﻿using ApplicationShared.Platform.ReadDtos;
 using ApplicationShared.PlatformCommand.ReadDtos;
-using Core.CQRS.QueryManager;
 
 namespace Api.GraphQL.Platform;
 
@@ -16,15 +15,15 @@ public class PlatformType : ObjectType<PlatformReadDto>
 
         descriptor
             .Field(x => x.Commands)
-            .ResolveWith<Resolvers>(x => x.GetCommands(default!, default!))
+            .ResolveWith<Resolvers>(x => x.GetCommands(default!))
             .Description("This is the list of all available commands for this platform");
     }
 
     private class Resolvers
     {
-        public IQueryable<PlatformCliReadDto> GetCommands(PlatformReadDto platform, [ScopedService] IQueryManager queryManager)
+        public IQueryable<PlatformCliReadDto> GetCommands(PlatformReadDto platform)
         {
-            return new List<PlatformCliReadDto>().AsQueryable();
+            return platform.Commands.AsQueryable();
         }
     }
 }

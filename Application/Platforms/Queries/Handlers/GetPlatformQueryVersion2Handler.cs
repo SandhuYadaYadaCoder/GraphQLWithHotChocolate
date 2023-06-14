@@ -1,55 +1,30 @@
 ﻿using ApplicationShared.Platform.Queries;
 using ApplicationShared.Platform.ReadDtos;
-using ApplicationShared.PlatformCommand.ReadDtos;
 using Core.CQRS.QueryManager;
-using Core.UnitOfWorkManager;
 using DataAccess.Entities;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Application.Platforms.QueryHandlers;
 
-public class GetPlatformQueryVersion2Handler : IQueryHandler<GetPlatformsVersion2Query, IQueryable<PlatformReadDto>>
+public class GetPlatformQueryVersion2Handler : IQueryHandler<GetPlatformsVersion2Query, IQueryable<Platform>>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public GetPlatformQueryVersion2Handler(IUnitOfWork unitOfWork)
+    public async Task<IQueryable<Platform>> Handle(GetPlatformsVersion2Query request, CancellationToken cancellationToken)
     {
-        _unitOfWork = unitOfWork;
-    }
-
-
-    public Task<IQueryable<PlatformReadDto>> Handle(GetPlatformsVersion2Query request, CancellationToken cancellationToken)
-    {
-        return Task.FromResult(request
+        return await Task.FromResult(request
             .AppDbContext
             .Platforms
-            .Include(x => x.PlatformClis)
-            .Select(x => new PlatformReadDto(
-                x.Id,
-                x.Name!,
-                x.LicenseKey!,
-                x.PlatformClis
-                    .Select(y => new PlatformCliReadDto(
-                        y.Id, 
-                        y.HowTo!, 
-                        y.CommandLine!, 
-                        y.PlatformId, 
-                        null)
-                    ))
-            )
-        );
+            .AsQueryable());
+    }
+}
 
-            //Task.FromResult(_unitOfWork
-            //.GetRepository<Platform>()
-            //.GetAll()
-            //.Include(x => x.PlatformClis)
-            //.Select(x => new PlatformReadDto(
-            //    x.Id,
-            //    x.Name!,
-            //    x.LicenseKey!,
-            //    x.PlatformClis
-            //    .Select(y => new PlatformCliReadDto(y.Id, y.HowTo!, y.CommandLine!, y.PlatformId, null)))));
+
+public class GetPlatformQueryVersion3Handler : IQueryHandler<GetPlatformsVersion3Query, IQueryable<PlatformReadDto>>
+{
+    public async Task<IQueryable<PlatformReadDto>> Handle(GetPlatformsVersion3Query request, CancellationToken cancellationToken)
+    {
+        return await Task.FromResult(request
+            .AppDbContext
+            .Platforms
+            .Select(x => new PlatformReadDto(x.Id, x.Name, x.LicenseKey, null))
+            .AsQueryable());
     }
 }

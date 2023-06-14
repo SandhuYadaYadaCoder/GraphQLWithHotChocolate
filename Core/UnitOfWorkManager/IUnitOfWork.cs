@@ -2,8 +2,7 @@
 
 namespace Core.UnitOfWorkManager;
 
-public interface IUnitOfWork : IDisposable
+public interface IUnitOfWork
 {
-    bool HasUnsavedChanges();
     IRepository<T> GetRepository<T>() where T : class;
 }

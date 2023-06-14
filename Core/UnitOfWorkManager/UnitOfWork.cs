@@ -1,22 +1,17 @@
 ﻿using DataAccess;
 using DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.UnitOfWorkManager;
 
-public class UnitOfWork : IPersistenceUnitOfWork, IUnitOfWork
+public class UnitOfWork : IPersistenceUnitOfWork
 {
-    private readonly AppDbContext _context;
+    private readonly AppDbContext _context = new AppDbContext(new DbContextOptionsBuilder().Options);
     private readonly IRepositoryFactory _repositoryFactory;
 
-    public UnitOfWork(AppDbContext context, IRepositoryFactory repositoryFactory)
+    public UnitOfWork(IRepositoryFactory repositoryFactory)
     {
-        _context = context;
         _repositoryFactory = repositoryFactory;
-    }
-
-    public void Dispose()
-    {
-        _context.Dispose();
     }
 
     public IRepository<T> GetRepository<T>() where T : class
